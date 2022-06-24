@@ -16,6 +16,7 @@ public class ConexionSQL {
     public static enum EMPLEADOS {
         Empleados, //Nombre de la tabla
         id,
+        matricula,
         nombre,
         apellidoPaterno,
         apellidoMaterno,
@@ -183,6 +184,7 @@ public class ConexionSQL {
                         + ") ENGINE = InnoDB CHARACTER SET = utf8");
                 sentencia.execute("CREATE TABLE IF NOT EXISTS " + EMPLEADOS.Empleados + "("
                         + EMPLEADOS.id + " INT PRIMARY KEY NOT NULL AUTO_INCREMENT, "
+                        + EMPLEADOS.matricula + " VARCHAR(15) UNIQUE KEY NOT NULL, "
                         + EMPLEADOS.nombre + " VARCHAR(30) NOT NULL, "
                         + EMPLEADOS.apellidoPaterno + " VARCHAR(20) NOT NULL, "
                         + EMPLEADOS.apellidoMaterno + " VARCHAR(20) NOT NULL, "
@@ -190,16 +192,14 @@ public class ConexionSQL {
                         + EMPLEADOS.fechaNacimiento + " DATE NOT NULL, "
                         + EMPLEADOS.fechaIngreso + " DATE NOT NULL, "
                         + EMPLEADOS.salarioBasico + " FLOAT NOT NULL, "
-                        + EMPLEADOS.imagen + " BLOB, "
+                        + EMPLEADOS.imagen + " MEDIUMBLOB, "
                         + "FOREIGN KEY (" + EMPLEADOS.genero + ") "
                         + "    REFERENCES " + GENEROS.Generos + "(" + GENEROS.id + ") "
                         + "    ON UPDATE CASCADE"
                         + "    ON DELETE CASCADE"
                         + ") ENGINE = InnoDB CHARACTER SET = utf8");
-                sentencia.execute("INSERT INTO " + GENEROS.Generos + " ("+ GENEROS.genero + ") "
-                        + "VALUES ('Masculino')");
-                sentencia.execute("INSERT INTO " + GENEROS.Generos + " ("+ GENEROS.genero + ") "
-                        + "VALUES ('Femenino')");
+                sentencia.execute("INSERT INTO " + GENEROS.Generos + " (" + GENEROS.genero + ") "
+                        + "VALUES ('Masculino'), ('Femenino')");
             } catch (SQLException | NullPointerException ex) {
                 JOptionPane.showMessageDialog(null, "Error al crear la base de datos \'" + this.database + "\': " + ex.getMessage(), "Excepción", JOptionPane.ERROR_MESSAGE);
             }
@@ -299,7 +299,7 @@ public class ConexionSQL {
             JOptionPane.showMessageDialog(null, ex.getMessage(), "Excepción", JOptionPane.ERROR_MESSAGE);
         }
     }
-    
+
     public PreparedStatement preparedStatement(String sent) throws SQLException {
         return this.conexion.prepareStatement(sent);
     }
