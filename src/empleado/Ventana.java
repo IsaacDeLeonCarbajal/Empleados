@@ -30,7 +30,6 @@ public class Ventana extends JFrame {
         super.setMinimumSize(MIN_SIZE);
         super.setTitle("Registro de Empleados");
         super.getContentPane().setBackground(COLOR_FONDO);
-//        super.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/res/images/logo.png")));
 
         super.getContentPane().setLayout(new Principal(super.getContentPane()));
 

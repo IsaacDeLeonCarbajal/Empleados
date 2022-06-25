@@ -108,7 +108,7 @@ public class ConexionSQL {
      * No se intenta crear la base de datos en caso de que esta no exista.
      */
     public ConexionSQL() {
-        initBDD(false, "bddTemporal1", "localhost", "3306", "root", ""); //Inicializar con valores por defecto
+        initBDD(false, "Empleados", "localhost", "3306", "root", ""); //Inicializar con valores por defecto
     }
 
     /**
@@ -128,7 +128,7 @@ public class ConexionSQL {
      * de no poder establecer una conexión con ella.
      */
     public ConexionSQL(boolean crearBDD) {
-        initBDD(crearBDD, "bddTemporal1", "localhost", "3306", "root", ""); //Inicializar con valores por defecto
+        initBDD(crearBDD, "Empleados", "localhost", "3306", "root", ""); //Inicializar con valores por defecto
     }
 
     /**
